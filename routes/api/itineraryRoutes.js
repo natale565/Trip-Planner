@@ -10,7 +10,7 @@ const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const itineraryData = await Itinerary.findAll({
-            include: [{}]
+            include: [{ model: User, attributes: ['username']}]
         });
         res.status(200).json(itineraryData);
     } catch (err) {
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const itineraryData = await Itinerary.findByPk(req.params.id, {
-            include: [{}]
+            include: [{ model: User, attributes: ['username']}]
         });
         if(!itineraryData) {
             res.status(400).json({ message: 'No itinerary found' });
