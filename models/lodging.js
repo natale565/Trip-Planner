@@ -27,6 +27,13 @@ Lodging.init(
             type: DataTypes.STRING,
             allow: false
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
@@ -37,4 +44,4 @@ Lodging.init(
     }
 );
 
-module.export = Lodging;
+module.exports = Lodging;
