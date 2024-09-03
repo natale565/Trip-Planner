@@ -6,7 +6,6 @@ const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
 
 
 // TODO GET all trips
-// ? should there be a JOIN ?
 router.get('/', async (req, res) => {
     try {
         const tripData = await Trip.findAll({
@@ -19,7 +18,6 @@ router.get('/', async (req, res) => {
 });
 
 // TODO GET a single trip
-// TODO finish JOIN
 router.get('/:id', async (req, res) => {
     try {
         const tripData = await Trip.findByPk(req.params.id, {

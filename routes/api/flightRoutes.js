@@ -6,7 +6,6 @@ const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
 
 
 // TODO GET all flights
-// ? should there be a JOIN ?
 router.get('/', async (req, res) => {
     try {
         const flightData = await Flight.findAll({
@@ -19,7 +18,6 @@ router.get('/', async (req, res) => {
 }); 
 
 // TODO GET a single flight
-// TODO finish JOIN
 router.get('/:id', async (req, res) => {
     try {
         const flightData = await Flight.findByPk(req.params.id, {
@@ -38,7 +36,7 @@ router.get('/:id', async (req, res) => {
 // TODO Update a flight
 
 
-// TODO CREATE a flight
+//CREATE a flight
 router.post('/', async (req, res) => {
     try {
         const flightData = await Flight.create(req.body);
@@ -48,7 +46,7 @@ router.post('/', async (req, res) => {
     }
 }); 
 
-// TODO Delete a flight
+//Delete a flight
 router.delete('/:id', async (req, res) => {
     try {
         const flightData = await Flight.destroy({
