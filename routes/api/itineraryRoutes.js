@@ -36,6 +36,26 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update an event
+router.put('/:id', (req, res) => {
+    Itinerary.update(
+        {
+            type: req.body.type,
+            location: req.body.location,
+            time: req.body.time,
+            description: req.body.description,  
+            user_id: req.body.user_id,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+    .then((updatedItinerary) => {
+        res.json(updatedItinerary);
+    })
+    .catch((err) => res.json(err));
+});
 
 // TODO Create an event
 router.post('/', async (req, res) => {

@@ -35,7 +35,27 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// TODO Update lodging 
+// TODO Update lodging
+router.put('/:id', (req, res) => {
+    Lodging.update(
+        {
+            name: req.body.name,
+            location: req.body.location,
+            check_in: req.body.time,
+            check_out: req.body.description,  
+            user_id: req.body.user_id,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+    .then((updatedLodging) => {
+        res.json(updatedLodging);
+    })
+    .catch((err) => res.json(err));
+});
 
 // TODO CREATE a lodging
 router.post('/', async (req, res) => {

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // TODO Import model
-const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
+const { Flight, Itinerary, User, Trip, User } = require('../../models');
 //  remember to export models as above
 
 // TODO GET all users
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const userData = await User.findByPk(req.params.id, {
-            include: [{  model: Flight, model: Lodging }]
+            include: [{  model: Flight, model: User }]
         });
         if(!userData) {
             res.status(400).json({ message: 'No user found' });
@@ -37,6 +37,24 @@ router.get('/:id', async (req, res) => {
 
 
 // TODO Update an event
+router.put('/:id', (req, res) => {
+    User.update(
+        {
+            name: req.body.name,
+            location: req.body.location,
+            user_id: req.body.user_id,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+    .then((updatedUser) => {
+        res.json(updatedUser);
+    })
+    .catch((err) => res.json(err));
+});
 
 // TODO CREATE a user
 router.post('/', async (req, res) => {
