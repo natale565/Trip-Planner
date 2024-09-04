@@ -19,7 +19,7 @@ Flight.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        to_aiport: {
+        to_airport: {
             type: DataTypes.STRING,
             allowNull: false,
         },

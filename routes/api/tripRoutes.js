@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // TODO Import model
-const { Flight, Itinerary, Trip, Trip, User } = require('../../models');
+const { Trip, User } = require('../../models');
 //  remember to export models as above
 
 
