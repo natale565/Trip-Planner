@@ -1,7 +1,8 @@
 const router = require('express').Router();
 
 // TODO Import model
-const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
+// eslint-disable-next-line no-unused-vars
+const { Flight, User } = require('../../models');
 //  remember to export models as above
 
 
