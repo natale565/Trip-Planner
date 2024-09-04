@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // TODO Import model
-const { Flight, Itinerary, Lodging, Trip, User } = require('../../models');
+const { Flight, Itinerary, Trip, Trip, User } = require('../../models');
 //  remember to export models as above
 
 
@@ -35,6 +35,24 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update a trip
+router.put('/:id', (req, res) => {
+    Trip.update(
+        {
+            name: req.body.name,
+            location: req.body.location, 
+            user_id: req.body.user_id,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+    .then((updatedTrip) => {
+        res.json(updatedTrip);
+    })
+    .catch((err) => res.json(err));
+});
 
 // TODO CREATE a trip
 router.post('/', async (req, res) => {

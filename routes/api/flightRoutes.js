@@ -34,7 +34,27 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update a flight
-
+router.put('/:id', (req, res) => {
+    Flight.update(
+        {
+            airline: req.body.airline,
+            from_airport: req.body.from_airport,
+            to_airport: req.body.to_airport,
+            etd: req.body.etd,
+            eta: req.body.eta,
+            user_id: req.body.user_id,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+    .then((updatedFlight) => {
+        res.json(updatedFlight);
+    })
+    .catch((err) => res.json(err));
+});
 
 //CREATE a flight
 router.post('/', async (req, res) => {
