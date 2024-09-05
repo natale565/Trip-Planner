@@ -24,7 +24,7 @@ User.init(
             allowNull: false,
         },
         username: {
-            id: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         email: {

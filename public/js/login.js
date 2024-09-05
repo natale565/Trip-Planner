@@ -13,9 +13,7 @@ const loginFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace(''); //add replace location
         } else {
-            alert.
-        } else {
-            alert(repsonse.statusText);
+            alert(response.statusText);
         }
     }
 };

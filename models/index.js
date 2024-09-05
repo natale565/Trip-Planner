@@ -5,6 +5,7 @@ const Lodging = require('./lodging');
 const Trip = require('./trip');
 const UserTrip = require('./userTrip');
 
+// User associations
 User.hasMany(Lodging, {
     foreignKey: 'user_id'
 });
@@ -26,13 +27,13 @@ Itinerary.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-User.belongsToMany(Trip, 
-    { through: UserTrip, 
-    foreignKey: 'userId' 
+User.belongsToMany(Trip, {
+    through: UserTrip,
+    foreignKey: 'userId'
 });
-Trip.belongsToMany(User, 
-    { through: UserTrip, 
-    foreignKey: 'tripId' 
+Trip.belongsToMany(User, {
+    through: UserTrip,
+    foreignKey: 'tripId'
 });
 
-module.exports = { User, Flight, Itinerary, Lodging, Trip, UserTrip};
+module.exports = { User, Flight, Itinerary, Lodging, Trip, UserTrip };
