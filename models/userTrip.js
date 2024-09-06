@@ -3,7 +3,9 @@ const sequelize = require('../config/connection');
 const User = require('./user');
 const Trip = require('./trip');
 
-const UserTrip = sequelize.define('UserTrip', {
+class UserTrip extends Model {}
+
+UserTrip.init({
     userId: {
         type: DataTypes.INTEGER,
         references: {
@@ -18,6 +20,9 @@ const UserTrip = sequelize.define('UserTrip', {
             key: 'id'
         }
     }
+}, {
+    sequelize,
+    modelName: 'UserTrip',
 });
 
-module.exports = { User, Trip, UserTrip };
+module.exports = UserTrip;

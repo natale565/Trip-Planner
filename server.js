@@ -1,34 +1,51 @@
-const express = require("express");
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const ejs = require('ejs');
+const routes = require('./routes');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./config/connection');
+require('dotenv').config();
+
 const app = express();
-const path = require("path");
+const PORT = process.env.PORT || 3001;
+
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    maxAge: 100000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict'
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
+
+app.engine('ejs', ejs.renderFile);
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.use(routes);
 
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-app.get("/flight", (req, res) => {
-  res.render("flight.ejs");
-});
-
-app.get("/itinerary", (req, res) => {
-  res.render("itinerary.ejs");
-});
-
-app.get("/lodging", (req, res) => {
-  res.render("lodging.ejs");
-});
 
 app.get("/trip", (req, res) => {
   res.render("trip.ejs");
 });
 
-app.listen(3001, () => {
-  console.log("Listening on port 3001!");
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
