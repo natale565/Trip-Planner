@@ -1,84 +1,56 @@
 const router = require('express').Router();
+const { User } = require('../../models');
 
-// TODO Import model
-const { Flight, User, } = require('../../models');
-//  remember to export models as above
-
-// TODO GET all users
-// ? should there be a JOIN ?
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const userData = await User.findAll();
-        res.status(200).json(userData);
+        const newUser = await User.create(req.body);
+
+        req.session.save(() => {
+            req.session.user_id = newUser.id;
+            req.session.logged_in = true;
+
+            res.status(201).json(newUser);
+        });
     } catch (err) {
-        res.status(500).json(err);
-    }
+    res.status(400).json({ message: 'Failed to create user', error: err.message });    }
 });
 
-// TODO GET a single user
-router.get('/:id', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id, {
-            include: [{  model: Flight, Model: User }]
-        });
-        if(!userData) {
-            res.status(400).json({ message: 'No user found' });
+        const userData = await User.findOne({ where: { email: req.body.username } });
+        
+
+        if (!userData) {
+            res.status(400).json({ message: 'Incorrect username or password' });
             return;
         }
 
-        res.status(200).json(userData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+        const validPassword = await userData.checkPassword(req.body.password);
 
-
-// TODO Update an event
-router.put('/:id', (req, res) => {
-    User.update(
-        {
-            name: req.body.name,
-            location: req.body.location,
-            user_id: req.body.user_id,
-        },
-        {
-            where: {
-                id: req.params.id,
-            },
+        if(!validPassword) {
+            res.status(400).json({ message: 'Incorrect username or password' });
+            return;
         }
-    )
-    .then((updatedUser) => {
-        res.json(updatedUser);
-    })
-    .catch((err) => res.json(err));
-});
 
-// TODO CREATE a user
-router.post('/', async (req, res) => {
-    try {
-        const userData = await User.create(req.body);
-        res.status(200).json(userData);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-// TODO DELETE a user
-router.delete('/:id', async (req, res) => {
-    try {
-        const userData = await User.destroy({
-            where: {
-                id: req.params.id
-            }
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+            
+            res.json({ user: userData, message: 'You are now logged in' });
         });
-        if (!userData) {
-            res.status(404).json({ message: 'No user found' });
-        }
-        res.status(200).json(userData);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(400).json({ message: 'Failed to log in', error: err.message });
     }
 });
 
+router.post('/logout', (req,res) => {
+    if ( req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        });
+    } else {
+        res.status(404).json({ message: 'No user logged in'});
+    }
+});
 
 module.exports = router;
