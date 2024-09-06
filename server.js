@@ -41,6 +41,9 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
+app.get('/create-trip', (req, res) => {
+  res.render('create_trip'); 
+});
 
 app.get("/trip", (req, res) => {
   res.render("trip.ejs");
