@@ -1,0 +1,28 @@
+
+<%- include('partials/head')%> 
+<%- include('partials/navbar') %>
+
+<main class="container mt-5">
+    <div class="flight-info">
+        <% if (flights && flights.length > 0) { %> 
+            <h3>Flight details:</h3>
+            <% flights.forEach(flight => { %> 
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Airline: <%= flight.airline %></h4>
+                        <p class="card-text">Flight Number: <%= flight.flight_number %></p>
+                        <p class="card-text">From: <%= flight.from_airport %></p>
+                        <p class="card-text">To: <%= flight.to_airport %></p>
+                        <p class="card-text">Estimated Departure Time: <%= flight.etd %></p>
+                        <p class="card-text">Estimated Arrival Time: <%= flight.eta %></p>
+                    </div>
+                </div>
+            <% }); %> 
+        <% } else { %>
+            <p>No flights entered for this trip</p>
+        <% } %>
+    </div>
+</main>
+
+<%- include('partials/footer')%>
+
