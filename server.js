@@ -29,7 +29,6 @@ app.use(session(sess));
 
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,17 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-app.get("/", (req, res) => {
-  res.render("home.ejs");
-});
-
-app.get('/create_trip', (req, res) => {
-  res.render('create_trip.ejs'); 
-});
-
-app.get("/trip", (req, res) => {
-  res.render("trip.ejs");
-});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
