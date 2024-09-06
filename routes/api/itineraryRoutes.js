@@ -1,12 +1,12 @@
 const router = require('express').Router();
-
+const withAuth = require('../../utils/auth');
 // TODO Import model
 const { Itinerary, User } = require('../../models');
 //  remember to export models as above
 
 
 // TODO GET all events
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const itineraryData = await Itinerary.findAll({
             include: [{ model: User, attributes: ['username']}]
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 // TODO GET a single event
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const itineraryData = await Itinerary.findByPk(req.params.id, {
             include: [{ model: User, attributes: ['username']}]
@@ -34,8 +34,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update an event
-router.put('/:id', (req, res) => {
-    Itinerary.update(
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const updatedItinerary = await Itinerary.update(
         {
             type: req.body.type,
             location: req.body.location,
@@ -48,15 +49,20 @@ router.put('/:id', (req, res) => {
                 id: req.params.id,
             },
         }
-    )
-    .then((updatedItinerary) => {
-        res.json(updatedItinerary);
-    })
-    .catch((err) => res.json(err));
+    );
+
+    if(!updatedItinerary[0]){
+        res.status(404).json({ message: 'No itinerary found with this id '});
+        return;
+    }
+    res.status(200).json({ message: 'Itinerary updated succesfully '});
+    } catch (err) {
+    res.status(500).json(err);
+    }
 });
 
 // TODO Create an event
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const itineraryData = await Itinerary.create(req.body);
         res.status(200).json(itineraryData);
@@ -66,7 +72,7 @@ router.post('/', async (req, res) => {
 });
 
 // TODO Delete an event
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const itineraryData = await Itinerary.destroy({
             where: {
@@ -74,9 +80,10 @@ router.delete('/:id', async (req, res) => {
             }
         });
         if (!itineraryData) {
-            res.status(404).json({ message: 'No itinerary found' });
+            res.status(404).json({ message: 'No itinerary found with this id' });
+            return;
         }
-        res.status(200).json(itineraryData);
+        res.status(200).json({ message: 'No itinerary found with this id '});
     } catch (err) {
         res.status(500).json(err);
     }

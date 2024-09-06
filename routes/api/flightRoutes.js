@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const withAuth = require('../../utils/auth');
 // TODO Import model
 // eslint-disable-next-line no-unused-vars
 const { Flight, User } = require('../../models');
@@ -7,7 +7,7 @@ const { Flight, User } = require('../../models');
 
 
 // TODO GET all flights
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const flightData = await Flight.findAll({
             include: [{ model: User, attributes : ['username']}],
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 }); 
 
 // TODO GET a single flight
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const flightData = await Flight.findByPk(req.params.id, {
             include: [{ model: User, attributes : ['username']}]
@@ -35,8 +35,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update a flight
-router.put('/:id', (req, res) => {
-    Flight.update(
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const updatedFlight = await Flight.update(
         {
             airline: req.body.airline,
             from_airport: req.body.from_airport,
@@ -50,15 +51,19 @@ router.put('/:id', (req, res) => {
                 id: req.params.id,
             },
         }
-    )
-    .then((updatedFlight) => {
-        res.json(updatedFlight);
-    })
-    .catch((err) => res.json(err));
+    );
+    if (!updatedFlight[0]) {
+        res.status(404).json({ message: 'No flight found with this id'});
+        return;
+    }
+    res.status(200).json({ message: 'Flight updated succesfully '});
+} catch (err) {
+    res.status(500).json(err);
+}
 });
 
 //CREATE a flight
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const flightData = await Flight.create(req.body);
         res.status(200).json(flightData);
@@ -68,7 +73,7 @@ router.post('/', async (req, res) => {
 }); 
 
 //Delete a flight
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const flightData = await Flight.destroy({
             where: {
@@ -76,9 +81,10 @@ router.delete('/:id', async (req, res) => {
             }
         });
         if (!flightData) {
-            res.status(404).json({ message: 'No flight found' });
+            res.status(404).json({ message: 'No flight found with this id' });
+            return;
         }
-        res.status(200).json(flightData);
+        res.status(200).json({ message: 'Flight deleted succesfully' });
     } catch (err) {
         res.status(500).json(err);
     }

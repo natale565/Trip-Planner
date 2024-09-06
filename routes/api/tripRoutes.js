@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 
 // TODO Import model
 const { Trip, User } = require('../../models');
@@ -6,7 +7,7 @@ const { Trip, User } = require('../../models');
 
 
 // TODO GET all trips
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const tripData = await Trip.findAll({
             include: [{ model: User, attributes: ['username']}]
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 // TODO GET a single trip
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const tripData = await Trip.findByPk(req.params.id, {
             include: [{ model: User, attributes : ['username']}]
@@ -35,27 +36,35 @@ router.get('/:id', async (req, res) => {
 });
 
 // TODO Update a trip
-router.put('/:id', (req, res) => {
-    Trip.update(
-        {
-            name: req.body.name,
-            location: req.body.location, 
-            user_id: req.body.user_id,
-        },
-        {
-            where: {
-                id: req.params.id,
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const updatedTrip = await Trip.update(
+            {
+                name: req.body.name,
+                location: req.body.location,
+                user_id: req.body.user_id,
             },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+
+        if (!updatedTrip[0]) {
+            res.status(404).json({ message: 'No trip found with this id' });
+            return;
         }
-    )
-    .then((updatedTrip) => {
-        res.json(updatedTrip);
-    })
-    .catch((err) => res.json(err));
+
+        res.status(200).json({ message: 'Trip updated successfully' });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
+
 // TODO CREATE a trip
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const tripData = await Trip.create(req.body);
         res.status(200).json(tripData);
@@ -65,21 +74,26 @@ router.post('/', async (req, res) => {
 });
 
 // TODO DELETE a trip
-router.delete('/:id', async (req, res) => {
+// Delete a trip
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const tripData = await Trip.destroy({
             where: {
-                id: req.params.id
-            }
+                id: req.params.id,
+            },
         });
+
         if (!tripData) {
-            res.status(404).json({ message: 'No trip found' });
+            res.status(404).json({ message: 'No trip found with this id' });
+            return;
         }
-        res.status(200).json(tripData);
+
+        res.status(200).json({ message: 'Trip deleted successfully' });
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 
 
 module.exports = router;
