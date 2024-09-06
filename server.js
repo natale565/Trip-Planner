@@ -36,6 +36,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
+app.get("/create-trip", (req, res) => {
+  res.render("create-trip.ejs");
+});
+
+app.get("/trip", (req, res) => {
+  res.render("trip.ejs");
+});
+=======
+
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
