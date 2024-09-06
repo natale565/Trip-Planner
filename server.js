@@ -41,17 +41,6 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-app.get("/flight", (req, res) => {
-  res.render("flight.ejs");
-});
-
-app.get("/itinerary", (req, res) => {
-  res.render("itinerary.ejs");
-});
-
-app.get("/lodging", (req, res) => {
-  res.render("lodging.ejs");
-});
 
 app.get("/trip", (req, res) => {
   res.render("trip.ejs");
