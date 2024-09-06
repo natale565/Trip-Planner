@@ -5,7 +5,6 @@ const lodgingRoutes = require('./lodgingRoutes');
 const tripRoutes = require('./tripRoutes');
 const userRoutes = require('./userRoutes');
 
-// TODO Prefix all routes within each api file
 router.use('/flight', flightRoutes);
 router.use('/itinerary', itineraryRoutes);
 router.use('/lodging', lodgingRoutes);
