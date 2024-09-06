@@ -1,9 +1,37 @@
-<%- include('partials/head')%> <%- include('partials/navbar') %>
+<%- include('partials/head')%> 
+
+<%- include('partials/navbar') %>
+
 <main class="container mt-5">
     <% if (logged_in) { %>
         <div class="mb-4">
-            <a href="/" class="btn btn-primary">Start a New Trip</a>
+            <button type="button" class="btn btn-primary" id="tripModal">Start A New Trip!</button>
           </div>
+
+          <div class="modal fade" id="tripModal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tripModal">Modal 1 Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form><div>
+                  <label for ="airport">Airport:</label>
+                  <input class = 'form-input' type="text">
+                </div>
+                
+                <div> <label for ="flightNum">Flight Number:</label>
+                  <input class = 'form-input' type="text"></div>
+
+                   <div> <label for ="departAir">Departing Airport:</label>
+                  <input class = 'form-input' type="text"></div>
+
+                   <div> <label for ="departTime">Departing Time:</label>
+                  <input class = 'form-input' type="text"></div>
+                  
+                </form>
+
     <h2 class="mb-4">Your Trips</h2>
     <div class="row">
     <% if (trips.length > 0) { %>
@@ -65,5 +93,7 @@
             </div>
           </div>
     <% } %>
+    <script src="/public/js/signup.js"></script>
+    <script src="/public/js/login.js"></script>
 </main>
 <%-include('partials/footer')%>
