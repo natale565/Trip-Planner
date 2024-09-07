@@ -55,7 +55,7 @@ router.put('/:id', withAuth, async (req, res) => {
         res.status(404).json({ message: 'No itinerary found with this id '});
         return;
     }
-    res.status(200).json({ message: 'Itinerary updated succesfully '});
+    res.status(200).json({ message: 'Itinerary updated successfully '});
     } catch (err) {
     res.status(500).json(err);
     }

@@ -3,7 +3,7 @@
 <%- include('partials/navbar') %>
 
 <main class="container mt-5">
-    <% if (logged_in) { %>
+   
         <div class="mb-4">
             <button type="button" class="btn btn-primary" id="tripModal">Start A New Trip!</button>
           </div>
@@ -34,24 +34,23 @@
 
     <h2 class="mb-4">Your Trips</h2>
     <div class="row">
-    <% if (trips.length > 0) { %>
-    <% trips.forEach(trip => { %>
+  
+   
         <div class="col-md-4 mb-4">
         <div class="card mb-4">
-        <a href="/trips/<%= trip.id %>">
+        <a href="">
         <div class="card-body">
-            <h2 class="card-title"><%= trip.name %></h2>
-            <p class="card-text">Location: <%= trip.location %></p>
+            <h2 class="card-title"></h2>
+            <p class="card-text"></p>
         </div>
         </a>
         </div>
         </div> 
-    <% }); %>
-    <% } else { %>
+   
         <p>No trips found for this user.</p>
-    <% } %>
+   
         </div>
-    <% } else { %>
+    
         <div class="row">
             <div class="col-md-6">
               <h2>Login</h2>
@@ -92,7 +91,7 @@
               </form>
             </div>
           </div>
-    <% } %>
+ 
     <script src="/public/js/signup.js"></script>
     <script src="/public/js/login.js"></script>
 </main>

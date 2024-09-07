@@ -38,12 +38,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 app.get("/", (req, res) => {
-  res.render("home.ejs");
+  res.render("login.ejs");
 });
 
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
 
-app.get("/trip", (req, res) => {
-  res.render("trip.ejs");
+app.get("/create-trip", (req, res) => {
+  res.render("create-trip");
+});
+
+app.get("/view-trip", (req, res) => {
+  res.render("view-trip");
 });
 
 sequelize.sync({ force: false }).then(() => {
