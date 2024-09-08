@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const User = require('./user');
-const Trip = require('./trip');
+
 
 class UserTrip extends Model {}
 
@@ -9,14 +8,14 @@ UserTrip.init({
     userId: {
         type: DataTypes.INTEGER,
         references: {
-            model: User,
+            model: 'user',
             key: 'id'
         }
     },
     tripId: {
         type: DataTypes.INTEGER,
         references: {
-            model: Trip,
+            model: 'trip',
             key: 'id'
         }
     }

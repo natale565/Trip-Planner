@@ -1,69 +1,33 @@
-<%- include('partials/head')%> <%- include('partials/navbar') %>
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+
 <main class="container mt-5">
     <% if (logged_in) { %>
         <div class="mb-4">
-            <a href="/" class="btn btn-primary">Start a New Trip</a>
-          </div>
-    <h2 class="mb-4">Your Trips</h2>
-    <div class="row">
-    <% if (trips.length > 0) { %>
-    <% trips.forEach(trip => { %>
-        <div class="col-md-4 mb-4">
-        <div class="card mb-4">
-        <a href="/trips/<%= trip.id %>">
-        <div class="card-body">
-            <h2 class="card-title"><%= trip.name %></h2>
-            <p class="card-text">Location: <%= trip.location %></p>
+            <a href="/trip" class="btn btn-primary">Start a New Trip</a>
         </div>
-        </a>
-        </div>
-        </div> 
-    <% }); %>
-    <% } else { %>
-        <p>No trips found for this user.</p>
-    <% } %>
-        </div>
-    <% } else { %>
+        <h2 class="mb-4">Your Trips</h2>
         <div class="row">
-            <div class="col-md-6">
-              <h2>Login</h2>
-          
-              <form class="login-form">
-                <div>
-                  <label for="email-login">email:</label>
-                  <input class="form-input" type="text" id="email-login" />
-                </div>
-                <div>
-                  <label for="password-login">password:</label>
-                  <input class="form-input" type="password" id="password-login" />
-                </div>
-                <div>
-                  <button type="submit">login</button>
-                </div>
-              </form>
-            </div>
-            <div class="col-md-6">
-              <h2>Signup</h2>
-          
-              <form class="signup-form">
-                <div>
-                  <label for="username-signup">username:</label>
-                  <input class="form-input" type="text" id="username-signup" />
-                </div>
-                <div>
-                  <label for="email-signup">email:</label>
-                  <input class="form-input" type="text" id="email-signup" />
-                </div>
-                <div>
-                  <label for="password-signup">password:</label>
-                  <input class="form-input" type="password" id="password-signup" />
-                </div>
-                <div>
-                  <button type="submit">signup</button>
-                </div>
-              </form>
-            </div>
-          </div>
+            <% if (trips.length > 0) { %>
+                <% trips.forEach(trip => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card mb-4">
+                                <div class="card-body">
+                                    <h2 class="card-title">Location: <%= trip.location %></h2>
+                                    <a href="/trip/<%= trip.id %>" class="btn btn-primary">Edit/View Trip</a>
+                                    <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete Trip</button>
+                                </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No trips found for this user.</p>
+            <% } %>
+        </div>
+    <% } else { %>
+        <p>Please log in to see your trips.</p>
     <% } %>
+<script src='/js/trip.js'></script>
 </main>
-<%-include('partials/footer')%>
+
+<%- include('partials/footer') %>

@@ -11,20 +11,20 @@ Lodging.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        lodging_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        location:{
+        lodging_location: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         check_in: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: false,
         },
         check_out: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allow: false
         },
         user_id: {
@@ -34,6 +34,13 @@ Lodging.init(
                 key: 'id',
             },
         },
+        trip_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'trip',
+                key: 'id',
+            },
+        }
     },
     {
         sequelize,

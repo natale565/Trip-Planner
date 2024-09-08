@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
-    maxAge: 100000,
+    maxAge: 10800000,
     httpOnly: true,
     secure: false,
     sameSite: 'strict'
@@ -35,20 +35,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
-
-app.get("/", (req, res) => {
-  res.render("home.ejs");
-});
-
-app.get("/create-trip", (req, res) => {
-  res.render("create-trip.ejs");
-});
-
-app.get("/trip", (req, res) => {
-  res.render("trip.ejs");
-});
-=======
-
+app.use('/trip', require('./routes/api/tripRoutes'));
+app.use('/flight', require('./routes/api/flightRoutes'));
+app.use('/lodging', require('./routes/api/lodgingRoutes'));
+app.use('/itinerary', require('./routes/api/itineraryRoutes'));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

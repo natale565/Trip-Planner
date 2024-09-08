@@ -1,16 +1,17 @@
 <%- include('partials/head')%> <%- include('partials/navbar') %>
 <body>
   <h1>Start A New Trip!</h1>
+<form id="new-trip-form">
 
     <label for="dest">Enter destination:</label><br>
 
-<input type="text" id="fname" name="fname" value="Enter Destination Here.."><br>
+<input type="text" id="enter-trip-dest" name="enter-trip-dest" placeholder="Enter Destination Here.."><br>
+<button type="submit" class="btn btn-primary" id="start-planning-btn">Start Planning</button>
 </form>
 
- <a href="/create_trip" class="btn btn-primary">Start Planning</a>
+ 
 
-  
-    
+<script src="/js/newTrip.js"></script>
 </body>
 
 <%-include('partials/footer')%>
