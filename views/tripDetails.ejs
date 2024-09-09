@@ -1,0 +1,429 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<body>
+<% if (logged_in) { %>
+<main class="container mt-5">
+    <h2>Trip Details</h2>
+    <div class="col-md-4 mb-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <p>Location: <%= trip.location %></p>
+                <p>Created by: <%= trip.user.username %></p>
+            </div>
+        </div>
+    </div>
+    <p>Flight Info:</p>
+<% if (flights.length > 0) { %>
+    <% flights.forEach(flight => { %>
+    <div class="col-md-4 mb-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5> Flight for: <%= trip.user.username %> </h5>
+                <ul>
+                    <li>Airline: <%= flight.airline %></li>
+                    <li>Flight #: <%= flight.flight_number %></li>
+                    <li>From: <%= flight.from_airport %> at <%= flight.etd %></li>
+                    <li>To: <%= flight.to_airport %> at <%= flight.eta %></li>
+                </ul>
+                <button class="btn btn-warning edit-flight-btn" data-id="<%= flight.id %>">Edit Flight</button>
+                <button class="btn btn-danger delete-flight-btn" data-id="<%= flight.id %>">Delete Flight</button>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+<% } else { %>
+    <p>No flights found.</p>
+<% } %>
+<button type="button" class="btn btn-primary" id="openModal1">Add a flight</button>
+    <p> Lodging Info:</p>
+        <% if (lodgings.length > 0) { %>
+            <% lodgings.forEach(lodging => { %>
+        <div class="col-md-4 mb-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5> Lodging for: <%= trip.user.username %> </h5>
+
+                    <ul>
+                        <li> Name: <%= lodging.lodging_name %> </li>
+                        <li> Location: <%= lodging.lodging_location %> </li> 
+                        <li> Check In: <%= lodging.check_in %> </li>
+                        <li> Check Out: <%= lodging.check_out %> </li>
+                    </ul>
+                    <button class="btn btn-warning edit-lodging-btn" data-id="<%= lodging.id %>">Edit Lodging</button>
+                    <button class="btn btn-danger delete-lodging-btn" data-id="<%= lodging.id %>">Delete Lodging</button>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+        <% } else { %>
+            <p>No lodging found.</p>
+        <% } %>
+        <button type="button" class="btn btn-secondary" id="openModal2">Add Your Lodging Info</button>
+    <p> Itinerary:</p>
+        <% if (itineraries.length > 0) { %>
+            <% itineraries.forEach(itinerary => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5> Event by: <%= trip.user.username %> </h5>
+                            <ul>
+                                <li> Description: <%= itinerary.description %> </li>
+                                <li> Location: <%= itinerary.itinerary_location %> </li>
+                                <li> Time: <%= itinerary.itinerary_time %> </li>
+                                <li> Notes: <%= itinerary.notes %> </li>
+                            </ul>
+                            <button class="btn btn-warning edit-itinerary-btn" data-id="<%= itinerary.id %>">Edit Itinerary</button>
+                            <button class="btn btn-danger delete-itinerary-btn" data-id="<%= itinerary.id %>">Delete Itinerary</button>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No itineraries found.</p>
+        <% } %>
+        <button type="button" class="btn btn-primary" id="openModal3">Add Items To Your Itinerary</button>
+
+    <div class="delete-trip-container">
+    </div>
+<!-- Modal 1-->
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal1Label">Flight</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="new-flight-form">
+                    <input type="hidden" id="trip-id" value="<%= trip.id %>">
+                    <div class="form-group">
+                        <label for="airline-input">Airline</label>
+                        <input type="text" class="form-control" id="airline-input" placeholder="Enter airline">
+                    </div>
+                    <div class="form-group">
+                        <label for="flightno-input">Flight Number</label>
+                        <input type="text" class="form-control" id="flightno-input" placeholder="Enter flight number">
+                    </div>
+                    <div class="form-group">
+                        <label for="depairport-input">Departure Airport</label>
+                        <input type="text" class="form-control" id="depairport-input" placeholder="Enter departure airport">
+                    </div>
+                    <div class="form-group">
+                        <label for="arrairport-input">Arrival Airport</label>
+                        <input type="text" class="form-control" id="arrairport-input" placeholder="Enter arrival airport">
+                    </div>
+                    <div class="form-group">
+                        <label for="deptime-input">Departure Time</label>
+                        <input type="datetime-local" class="form-control" id="deptime-input" placeholder="Enter departure time">
+                    </div>
+                    <div class="form-group">
+                        <label for="arrtime-input">Arrival Time</label>
+                        <input type="datetime-local" class="form-control" id="arrtime-input" placeholder="Enter arrival time">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="save-flight-btn">Save Flight</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal2">Lodging</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="trip-id" value="<%= trip.id %>">
+                <div>
+                  <label for ="lodging">Lodging:</label>
+                  <input class = 'form-input' id='lodging-name'type="text">
+                </div>
+                
+                <div> <label for ="address">Lodging Address:</label>
+                  <input class = 'form-input' id="lodging-location" type="text"></div>
+
+                   <div> <label for ="checkin">Checkin Time:</label>
+                  <input type="datetime-local" class='form-input' id="checkin-time" placeholder="Enter your check-in details"></div>
+
+                   <div> <label for ="checkout">Checkout Time:</label>
+                  <input type="datetime-local"class='form-input' id="checkout-time" placeholder="Enter your check-out details"></div>
+
+                  <button type="button" class="btn btn-secondary" id="save-lodging-btn" data-bs-dismiss="modal">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal3Label">Itinerary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="new-itinerary-form">
+                    <input type="hidden" id="trip-id" value="<%= trip.id %>">
+                    <div class="form-group">
+                        <label for="itinerary-description">Description</label>
+                        <input type="text" class="form-control" id="itinerary-description" placeholder="Enter description">
+                    </div>
+                    <div class="form-group">
+                        <label for="itinerary-time">Time</label>
+                        <input type="datetime-local" class="form-control" id="itinerary-time" placeholder="Enter time">
+                    </div>
+                    <div class="form-group">
+                        <label for="itinerary-location">Location</label>
+                        <input type="text" class="form-control" id="itinerary-location" placeholder="Enter location">
+                    </div>
+                    <div class="form-group">
+                        <label for="itinerary-notes">Notes</label>
+                        <input type="text" class="form-control" id="itinerary-notes" placeholder="Enter notes">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="save-itinerary-btn">Save Itinerary</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for Editing Flight -->
+<div class="modal fade" id="editFlightModal" tabindex="-1" aria-labelledby="editFlightModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editFlightModalLabel">Edit Flight</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-flight-form">
+                    <div class="mb-3">
+                        <label for="edit-airline" class="form-label">Airline</label>
+                        <input type="text" class="form-control" id="edit-airline" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-flight-number" class="form-label">Flight Number</label>
+                        <input type="text" class="form-control" id="edit-flight-number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-from-airport" class="form-label">From Airport</label>
+                        <input type="text" class="form-control" id="edit-from-airport" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-to-airport" class="form-label">To Airport</label>
+                        <input type="text" class="form-control" id="edit-to-airport" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-etd" class="form-label">Departure Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-etd" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-eta" class="form-label">Arrival Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-eta" required>
+                    </div>
+                    <input type="hidden" id="edit-flight-id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="save-edited-flight">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Editing Lodging -->
+<div class="modal fade" id="editLodgingModal" tabindex="-1" aria-labelledby="editLodgingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLodgingModalLabel">Edit Lodging</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-lodging-form">
+                    <div class="mb-3">
+                        <label for="edit-lodging-name" class="form-label">Lodging Name</label>
+                        <input type="text" class="form-control" id="edit-lodging-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-lodging-address" class="form-label">Lodging Address</label>
+                        <input type="text" class="form-control" id="edit-lodging-address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-checkin-time" class="form-label">Check-in Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-checkin-time" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-checkout-time" class="form-label">Check-out Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-checkout-time" required>
+                    </div>
+                    <input type="hidden" id="edit-lodging-id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="save-edited-lodging">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Editing Itinerary -->
+<div class="modal fade" id="editItineraryModal" tabindex="-1" aria-labelledby="editItineraryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editItineraryModalLabel">Edit Itinerary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-itinerary-form">
+                    <div class="mb-3">
+                        <label for="edit-itinerary-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="edit-itinerary-description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-itinerary-location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="edit-itinerary-location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-itinerary-time" class="form-label">Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-itinerary-time" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-notes" class="form-label">Notes</label>
+                        <input type="text" class="form-control" id="edit-notes" required>
+                    </div>
+                    <input type="hidden" id="edit-itinerary-id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="save-edited-itinerary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Open Modal 1
+        $('#openModal1').click(function() {
+            $('#modal1').modal('show');
+        });
+
+        // Open Modal 2
+        $('#openModal2').click(function() {
+            $('#modal2').modal('show');
+        });
+
+        // Open Modal 3
+        $('#openModal3').click(function() {
+            $('#modal3').modal('show');
+        });
+
+        // Open Modal 4
+        $('#openModal4').click(function() {
+            $('#modal4').modal('show');
+        });
+    });
+
+    const openEditFlightModal = (flightId) => {
+    fetch(`/api/flight/${flightId}`)
+        .then(response => response.json())
+        .then(flight => {
+            document.querySelector('#edit-airline').value = flight.airline;
+            document.querySelector('#edit-flight-number').value = flight.flight_number;
+            document.querySelector('#edit-from-airport').value = flight.from_airport;
+            document.querySelector('#edit-to-airport').value = flight.to_airport;
+            document.querySelector('#edit-etd').value = new Date(flight.etd).toISOString().slice(0, 16);
+            document.querySelector('#edit-eta').value = new Date(flight.eta).toISOString().slice(0, 16);
+            document.querySelector('#edit-flight-id').value = flight.id;
+
+            $('#editFlightModal').modal('show');
+        })
+        .catch(error => {
+            console.error('Error fetching flight data:', error);
+        });
+};
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('edit-flight-btn')) {
+        const flightId = event.target.getAttribute('data-id');
+        openEditFlightModal(flightId);
+    }
+});
+
+const openEditLodgingModal = (lodgingId) => {
+    fetch(`/api/lodging/${lodgingId}`)
+        .then(response => response.json())
+        .then(lodging => {
+            document.querySelector('#edit-lodging-name').value = lodging.lodging_name;
+            document.querySelector('#edit-lodging-address').value = lodging.lodging_location;
+            document.querySelector('#edit-checkin-time').value = new Date(lodging.check_in).toISOString().slice(0,16);
+            document.querySelector('#edit-checkout-time').value = new Date(lodging.check_out).toISOString().slice(0,16);
+            document.querySelector('#edit-lodging-id').value = lodgingId;
+
+            $('#editLodgingModal').modal('show');
+        })
+        .catch(error => {
+            console.error('Error fetching lodging data:', error);
+        });
+};
+
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('edit-lodging-btn')) {
+        const lodgingId = event.target.getAttribute('data-id');
+        openEditLodgingModal(lodgingId);
+    }
+});
+
+const openEditItineraryModal = (itineraryId) => {
+    fetch(`/api/itinerary/${itineraryId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json();
+        })
+        .then(itinerary => {
+            document.querySelector('#edit-itinerary-description').value = itinerary.description;
+            document.querySelector('#edit-itinerary-location').value = itinerary.itinerary_location;
+            document.querySelector('#edit-itinerary-time').value = new Date(itinerary.itinerary_time).toISOString().slice(0,16);
+            document.querySelector('#edit-notes').value = itinerary.notes;
+            document.querySelector('#edit-itinerary-id').value = itineraryId;
+
+            $('#editItineraryModal').modal('show');
+        })
+        .catch(error => {
+            console.error('Error fetching itinerary data:', error);
+            alert('An error occurred while fetching the itinerary data');
+        });
+};
+
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('edit-itinerary-btn')) {
+        const itineraryId = event.target.getAttribute('data-id');
+        openEditItineraryModal(itineraryId);
+    }
+});
+
+
+</script>
+
+</main>
+<script src="/js/trip.js"></script>
+<script src="/js/flight.js"></script>
+<script src="/js/itinerary.js"></script>
+<script src="/js/lodging.js"></script>
+</body>
+<% } %>
+<%- include('partials/footer') %>

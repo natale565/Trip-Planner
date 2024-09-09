@@ -4,10 +4,10 @@ const logout = async () => {
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location.replace('');//add location
+        document.location.replace('/');
     } else {
         alert(response.statusText);
     }
 };
 
-document.querySelector('').addEventListener('click', logout);//add class/id
+document.querySelector('#logout').addEventListener('click', logout);

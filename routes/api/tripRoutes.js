@@ -1,99 +1,85 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
-
-// TODO Import model
-const { Trip, User } = require('../../models');
-//  remember to export models as above
-
-
-// TODO GET all trips
-router.get('/', withAuth, async (req, res) => {
-    try {
-        const tripData = await Trip.findAll({
-            include: [{ model: User, attributes: ['username']}]
-        });
-        res.status(200).json(tripData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-// TODO GET a single trip
-router.get('/:id', withAuth, async (req, res) => {
-    try {
-        const tripData = await Trip.findByPk(req.params.id, {
-            include: [{ model: User, attributes : ['username']}]
-        });
-        if(!tripData) {
-            res.status(400).json({ message: 'No trip found' });
-            return;
-        }
-
-        res.status(200).json(tripData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-// TODO Update a trip
-router.put('/:id', withAuth, async (req, res) => {
-    try {
-        const updatedTrip = await Trip.update(
-            {
-                name: req.body.name,
-                location: req.body.location,
-                user_id: req.body.user_id,
-            },
-            {
-                where: {
-                    id: req.params.id,
-                },
-            }
-        );
-
-        if (!updatedTrip[0]) {
-            res.status(404).json({ message: 'No trip found with this id' });
-            return;
-        }
-
-        res.status(200).json({ message: 'Trip updated successfully' });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+const { Trip, User, Flight, Itinerary, Lodging } = require('../../models');
 
 
 // TODO CREATE a trip
 router.post('/', withAuth, async (req, res) => {
     try {
-        const tripData = await Trip.create(req.body);
+        const { location } = req.body;
+        if (!location) {
+            return res.status(400).json({ message: 'Location is required' });
+        }
+        const tripData = await Trip.create({
+            location,
+            user_id: req.session.user_id,
+        });
+
         res.status(200).json(tripData);
     } catch (err) {
-        res.status(400).json(err);
+        console.error('Failed to create trip:', err);
+        res.status(500).json({ message: 'Failed to create trip', error: err.message });
+    }
+});
+
+
+// Get All Trips
+router.get('/', withAuth, async (req, res) => {
+    try {
+        const tripData = await Trip.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                },
+                {
+                    model: Flight,
+                    attributes: ['airline', 'flight_number', 'from_airport', 'etd', 'to_airport', 'eta']
+                },
+                {
+                    model: Lodging,
+                    attributes: ['lodging_name', 'lodging_location', 'check_in', 'check_out']
+                },
+                {
+                    model: Itinerary,
+                    attributes: ['description', 'itinerary_location', 'itinerary_time', 'notes']
+                }
+            ]
+        });
+
+        if (tripData.length === 0) {
+            return res.status(404).json({ message: 'No trips found' });
+        }
+
+        const trips = tripData.map(trip => trip.get({ plain: true }));
+
+        res.render('home', {
+            trips,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to retrieve trips', error: err.message });
     }
 });
 
 // TODO DELETE a trip
-// Delete a trip
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const tripData = await Trip.destroy({
+        const tripId = req.params.id;
+        const trip = await Trip.destroy({
             where: {
-                id: req.params.id,
+                id: tripId,
+                user_id: req.session.user_id
             },
         });
-
-        if (!tripData) {
-            res.status(404).json({ message: 'No trip found with this id' });
-            return;
+        if (trip) {
+            res.status(200).json({ message: 'Trip deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Trip not found' });
         }
-
-        res.status(200).json({ message: 'Trip deleted successfully' });
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ message: 'Failed to delete trip', error: err.message });
     }
 });
-
-
 
 module.exports = router;

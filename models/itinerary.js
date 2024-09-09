@@ -11,21 +11,21 @@ Itinerary.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        type: {
+        description: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        location: 
+        itinerary_location: 
         {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        time:
+        itinerary_time:
         {
-            type: DataTypes.TIME,
+            type: DataTypes.DATE,
             allowNull: false,
         },
-        description:
+        notes:
         {
             type: DataTypes.TEXT,
             allowNull: false
@@ -37,6 +37,13 @@ Itinerary.init(
                 key: 'id',
             },
         },
+        trip_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'trip',
+                key: 'id',
+            },
+        }
 
     },
     {

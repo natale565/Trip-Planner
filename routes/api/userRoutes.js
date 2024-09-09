@@ -3,7 +3,11 @@ const { User } = require('../../models');
 
 router.post('/', async (req, res) => {
     try {
-        const newUser = await User.create(req.body);
+        const newUser = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        });
 
         req.session.save(() => {
             req.session.user_id = newUser.id;
@@ -12,12 +16,14 @@ router.post('/', async (req, res) => {
             res.status(201).json(newUser);
         });
     } catch (err) {
-    res.status(400).json({ message: 'Failed to create user', error: err.message });    }
+        res.status(400).json({ message: 'Failed to create user', error: err.message });
+    }
 });
+
 
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.username } });
+        const userData = await User.findOne({ where: { email: req.body.email } });
         
 
         if (!userData) {

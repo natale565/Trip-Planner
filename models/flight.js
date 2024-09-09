@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Flight extends Model {};
+class Flight extends Model {}
 
 Flight.init(
     {
@@ -15,25 +15,25 @@ Flight.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        flight_number: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         from_airport: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        etd: {
+            type: DataTypes.DATE,
             allowNull: false,
         },
         to_airport: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        etd: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
         eta: {
-            type: DataTypes.TIME,
+            type: DataTypes.DATE,
             allowNull: false,
-        },
-        flight_number: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -41,6 +41,15 @@ Flight.init(
                 model: 'user',
                 key: 'id',
             },
+            allowNull: false,
+        },
+        trip_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'trip',
+                key: 'id',
+            },
+            allowNull: false,
         },
     },
     {
@@ -48,7 +57,7 @@ Flight.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'flight'
+        modelName: 'flight',
     }
 );
 
