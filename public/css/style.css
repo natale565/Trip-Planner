@@ -1,6 +1,32 @@
 
+/*Main css*/
+html, body {
+    height: 100%;
+}
 
-/* login page css */
+body {
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex: 1;  
+}
+
+/*Nav Bar css*/
+.navbar{
+background: linear-gradient(to right, #71d1ca, #b0e57c);
+padding: 15px 30px;  
+}
+
+#navbarNav {
+justify-content: right;
+}
+
+.nav-link{
+    color: white;
+}
+
 body {
     font-family: Arial, sans-serif;
 }
@@ -59,11 +85,152 @@ body {
     width: 50px;
 }
 
-/* footer css */
-.footer {
-    background-color: #f8f9fa;
-    padding: 20px;
+
+/* tripDetails page css */
+.card-body{
+    background: white;
+    border: #b0e57c solid 2px;
+    border-radius: 8px;
 }
+.card {
+    position: relative;
+    margin-top: 30px;
+    
+  }
+
+#trip-location-header{
+    text-align: center;
+    border-bottom: #71d1ca 3px solid;
+    padding-bottom: 10px;
+
+}
+
+.trip-details-container{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.trip-details-container .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.trip-details-container .card {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trip-details-container .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; 
+}
+
+.trip-cards {
+    margin-top: -50px;
+}
+
+li {
+    list-style: none;
+}
+
+h3{
+        text-align: center;
+        position: relative;
+        background: linear-gradient(to right, #71d1ca, #b0e57c);
+        width: 75%;
+        border-radius: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        position: relative;
+        margin: 0 auto; 
+        margin-bottom: 20px;
+
+    }
+h5{
+    text-align: center;
+}
+
+.justify-content-center .btn{
+    width: 150px; 
+    margin: 10px; 
+}
+
+.justify-content-center .btn,
+#openModal1,
+#openModal2,
+#openModal3 {
+    width: 150px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.edit-btn
+{
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    border: solid 2px white;
+    color: white;
+    padding: 10px;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    transform: scale(1.05);
+    color: white;
+    border: none;
+}
+
+.del-btn{
+    border: solid 2px white;
+    color: white;
+}
+
+.del-btn:hover {
+    transform: scale(1.05);
+}
+
+#save-flight-btn, #save-lodging-btn, #save-itinerary-btn, #save-edited-flight, #save-edited-lodging, #save-edited-itinerary{
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    color: white;
+    padding: 10px;
+    border: white 2px solid;
+}
+
+#save-flight-btn:hover, #save-lodging-btn:hover, #save-itinerary-btn:hover, #save-edited-flight:hover, #save-edited-lodging:hover, #save-edited-itinerary:hover {
+    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    transform: scale(1.05);
+    color: white;
+    border: white 2px solid;
+}
+
+.modal-body, .modal-header, .modal-footer {
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    color: white;
+    padding: 10px;
+}
+
+
+/*Footer css*/
+.footer {
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    padding: 15px 30px;  
+    position: relative;  
+    width: 100%;
+    bottom: 0; 
+    z-index: 10;
+    
+}
+
 .footer a {
     color: #333;
     text-decoration: none;
@@ -74,4 +241,46 @@ body {
 .social-icons a {
     margin: 0 10px;
     font-size: 20px;
+}
+
+@media (max-width: 992px) {
+    .trip-details-container .col-md-4 {
+        flex: 1 1 45%; 
+    }
+
+    .add-btn-container {
+        margin-bottom: 150px;
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trip-details-container .col-md-4 {
+        flex: 1 1 100%; 
+        margin-bottom: 100px;
+    }
+    
+    .edit-btn {
+        width: 100%; 
+        padding: 12px; 
+    }
+    
+    .add-btn-container {
+        margin-bottom: 150px;
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .trip-details-container h2, .trip-details-container h3 {
+        font-size: 1.5rem; 
+    }
+    
+    .trip-details-container .row {
+        flex-direction: column; 
+    }
+
+    .add-btn-container {
+        margin-bottom: 15px;
+    }
 }
