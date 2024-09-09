@@ -119,6 +119,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         } else {
             res.status(404).json({ message: 'Flight not found' });
         }
+
     } catch (err) {
         console.error('Error deleting flight:', err); 
         res.status(500).json({ message: 'Failed to delete flight', error: err.message });
