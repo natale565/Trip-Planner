@@ -1,0 +1,77 @@
+
+
+/* login page css */
+body {
+    font-family: Arial, sans-serif;
+}
+.login-page {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    
+    width: 400px;
+}
+.right-section {
+    background: linear-gradient(to bottom right, #c9e7e5, #91c786);
+    padding: 30px;
+    color: black;
+}
+.right-section h4 {
+    font-weight: bold;
+}
+.form-control {
+    margin-bottom: 15px;
+}
+.login-button, .create-account-button {
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    border: none;
+    color: white;
+    padding: 10px;
+}
+.forgot-password {
+    color: #007bff;
+    cursor: pointer;
+}
+.social-icons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.social-icons img {
+    width: 30px;
+    margin: 0 10px;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.logo img {
+    width: 50px;
+}
+
+/* footer css */
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+.footer a {
+    color: #333;
+    text-decoration: none;
+}
+.footer a:hover {
+    color: #007bff;
+}
+.social-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+}
