@@ -1,5 +1,6 @@
-<%- include('partials/head')%> <%- include('partials/navbar') %>
-<div class="row">
+<%- include('partials/head') %>
+
+<!-- <div class="row">
         <div class="col-md-6">
           <h2>Login</h2>
       
@@ -41,5 +42,47 @@
       </div>
       <script src="/js/signup.js"></script>
       <script src="/js/login.js"></script>
-</main>
-<%-include('partials/footer')%>
+</main> -->
+
+<div class="container-fluid login-page">
+    <div class="row">
+        <!-- Left Section (Login Form) -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="login-container text-center">
+                <div class="logo">
+                  <i class="bi bi-globe-americas" style="font-size: 64px;"></i>
+                  </svg>
+                </div>
+                <h3>Trip-Planner</h3>
+                <p>Please login to your account</p>
+                <form>
+                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <button type="submit" class="btn login-button w-100">Log In</button>
+                </form>
+                <div class="forgot-password mt-3">Forgot password?</div>
+                <hr class="my-4">
+                <p>Create an account</p>
+                <form>
+                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="email" class="form-control" placeholder="Email">
+                    <button type="submit" class="btn create-account-button w-100">Create Account</button>
+                </form>
+                <p class="mt-4">Issues with your account? <a href="mailto:support@trip-planner.com">Email us</a>.</p>
+            </div>
+        </div>
+
+        <!-- Right Section (Information) -->
+        <div class="col-md-6 right-section d-flex align-items-center">
+            <div>
+                <h4>Lorem ipsum dolor amet, consectetur adipiscing elit.</h4>
+                <p>Lorem ipsum dolor amet, consectetur adipiscing elit. Himenaeos et viverra nisl arcu maximus praesent. Tincidunt ipsum ipsum sodales mollis; nam libero. Tempus pulvinar posuere tellus montes felis est nisl. Cursus augue mollis class maximus ligula. Arcu ac odio ornare leo lobortis a?</p>
+                <p>Effictur primis facilisi scelerisque primis lectus magna. In elit vestibulum lorem interdum nibh cras dapibus aliquam.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
