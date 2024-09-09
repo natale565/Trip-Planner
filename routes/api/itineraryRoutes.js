@@ -77,29 +77,18 @@ router.put('/:id', withAuth, async (req, res) => {
             }
         );
 
+        // Check if any rows were affected
+        if (affectedRows === 0) {
+            res.status(404).json({ message: 'No itinerary found with this ID' });
+            return;
         }
-    );
 
-    if(!updatedItinerary[0]){
-        res.status(404).json({ message: 'No itinerary found with this id '});
-        return;
-    }
-    res.status(200).json({ message: 'Itinerary updated successfully '});
+        res.status(200).json({ message: 'Itinerary updated successfully' });
     } catch (err) {
-    res.status(500).json(err);
+        res.status(500).json(err);
     }
 });
 
-        if (affectedRows > 0) {
-            res.status(200).json({ message: 'Itinerary updated successfully' });
-        } else {
-            res.status(404).json({ message: 'No itinerary found with this id' });
-        }
-    } catch (err) {
-        console.error('Failed to update itinerary:', err);
-        res.status(500).json({ message: 'Failed to update itinerary', error: err.message });
-    }
-});
 
 // TODO Delete an event
 router.delete('/:id', withAuth, async (req, res) => {
