@@ -1,33 +1,31 @@
-<%- include('partials/head')%> 
-
+<%- include('partials/head') %>
 <%- include('partials/navbar') %>
 
 <main class="container mt-5">
-   
-        <div class="mb-4">
-            <a href="/trip" class="btn btn-primary">Start a New Trip</a>
-        </div>
-        <h2 class="mb-4">Your Trips</h2>
-        <div class="row">
-            <% if (trips.length > 0) { %>
-                <% trips.forEach(trip => { %>
-                    <div class="col-md-4 mb-4">
-                        <div class="card mb-4">
-                                <div class="card-body">
-                                    <h2 class="card-title">Location: <%= trip.location %></h2>
-                                    <a href="/trip/<%= trip.id %>" class="btn btn-primary">Edit/View Trip</a>
-                                    <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete Trip</button>
-                                </div>
+    <div class="mb-4">
+        <a href="/trip" class="btn btn-primary">Start a New Trip</a>
+    </div>
+    
+    <h2 class="mb-4">Your Trips</h2>
+    
+    <div class="row">
+        <% if (trips.length > 0) { %>
+            <% trips.forEach(trip => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Location: <%= trip.location %></h2>
+                            <a href="/trip/<%= trip.id %>" class="btn btn-primary">Edit/View Trip</a>
+                            <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete Trip</button>
                         </div>
                     </div>
-                <% }); %>
-            <% } else { %>
-                <p>No trips found for this user.</p>
-            <% } %>
-        </div>
-    <% } else { %>
-        <p>Please log in to see your trips.</p>
-    <% } %>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No trips found for this user.</p>
+        <% } %>
+    </div>
+    
 <script src='/js/trip.js'></script>
 </main>
 
