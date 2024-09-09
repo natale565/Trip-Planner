@@ -1,49 +1,4 @@
 <%- include('partials/head') %>
-
-<!-- <div class="row">
-        <div class="col-md-6">
-          <h2>Login</h2>
-      
-          <form class="login-form">
-            <div>
-              <label for="email-login">email:</label>
-              <input class="form-input" type="text" id="email-login" />
-            </div>
-            <div>
-              <label for="password-login">password:</label>
-              <input class="form-input" type="password" id="password-login" />
-            </div>
-            <div>
-              <button type="submit">login</button>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <h2>Signup</h2>
-      
-          <form class="signup-form">
-            <div>
-              <label for="username-signup">username:</label>
-              <input class="form-input" type="text" id="username-signup" />
-            </div>
-            <div>
-              <label for="email-signup">email:</label>
-              <input class="form-input" type="text" id="email-signup" />
-            </div>
-            <div>
-              <label for="password-signup">password:</label>
-              <input class="form-input" type="password" id="password-signup" />
-            </div>
-            <div>
-              <button type="submit">signup</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <script src="/js/signup.js"></script>
-      <script src="/js/login.js"></script>
-</main> -->
-
 <div class="container-fluid login-page">
     <div class="row">
         <!-- Left Section (Login Form) -->
@@ -55,18 +10,18 @@
                 </div>
                 <h3>Trip-Planner</h3>
                 <p>Please login to your account</p>
-                <form>
-                    <input type="text" class="form-control" placeholder="Username">
-                    <input type="password" class="form-control" placeholder="Password">
+                <form class="login-form">
+                    <input type="text" class="form-control" id="email-login" placeholder="Email">
+                    <input type="password" class="form-control" placeholder="Password" id="password-login" >
                     <button type="submit" class="btn login-button w-100">Log In</button>
                 </form>
                 <div class="forgot-password mt-3">Forgot password?</div>
                 <hr class="my-4">
                 <p>Create an account</p>
-                <form>
-                    <input type="text" class="form-control" placeholder="Username">
-                    <input type="password" class="form-control" placeholder="Password">
-                    <input type="email" class="form-control" placeholder="Email">
+                <form class="signup-form">
+                    <input type="text" class="form-control" id="username-signup" placeholder="Username">
+                    <input type="password" class="form-control" id="password-signup" placeholder="Password">
+                    <input type="email" class="form-control" id="password-signup" placeholder="Email">
                     <button type="submit" class="btn create-account-button w-100">Create Account</button>
                 </form>
                 <p class="mt-4">Issues with your account? <a href="mailto:support@trip-planner.com">Email us</a>.</p>
@@ -97,6 +52,7 @@
         </div>
     </div>
 </div>
-
+<script src="/js/signup.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>
