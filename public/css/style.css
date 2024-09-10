@@ -85,6 +85,46 @@ body {
     width: 50px;
 }
 
+/* dashboard page  */
+.row {
+    background-color: ;
+    display: grid;
+    place-items: center;
+}
+
+.col-md-6 {
+    text-align: center;
+}
+
+
+#card-body {
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+}
+
+#trips {
+    text-align: center;
+    
+}
+
+.card-title {
+    color: white;
+}
+
+/* Custom start trip button */
+.start-trip-btn {
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 20px; 
+    font-size: 16px; 
+    transition: all 0.3s ease; 
+}
+
+/* hover effect */
+.start-trip-btn:hover {
+    color: #000;
+    border-color: #000; 
+}
 
 /* tripDetails page css */
 .card-body{
@@ -95,8 +135,7 @@ body {
 .card {
     position: relative;
     margin-top: 30px;
-    
-  }
+}
 
 #trip-location-header{
     text-align: center;
