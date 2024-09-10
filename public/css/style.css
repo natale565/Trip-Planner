@@ -390,11 +390,11 @@ body.background-gif {
         margin-top: -15px;
     }
     .login-page {
-        flex-direction: column; /* Stack columns on smaller screens */
+        flex-direction: column;
     }
 
     .col-md-6 {
-        max-width: 100%; /* Full width on smaller screens */
+        max-width: 100%;
     }
 }
 
