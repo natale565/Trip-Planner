@@ -1,32 +1,35 @@
 <%- include('partials/head') %>
-<%- include('partials/navbar') %>
+    <%- include('partials/navbar') %>
 
-<main class="container mt-5">
-    <div class="mb-4">
-        <a href="/trip" class="btn btn-primary">Start a New Trip</a>
-    </div>
-    
-    <h2 class="mb-4">Your Trips</h2>
-    
-    <div class="row">
-        <% if (trips.length > 0) { %>
-            <% trips.forEach(trip => { %>
-                <div class="col-md-4 mb-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">Location: <%= trip.location %></h2>
-                            <a href="/trip/<%= trip.id %>" class="btn btn-primary">Edit/View Trip</a>
-                            <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete Trip</button>
+        <main class="container mt-5">
+            <div class="mb-2">
+                <a href="/trip" class="btn btn-primary start-trip-btn">Start a New Trip</a>
+            </div>
+
+            <h2 class="mb-1" id="trips">Your Trips</h2>
+            <p id="trips">View, Edit, or Delete your trips</p>
+
+            <div class="row">
+                <% if (trips.length> 0) { %>
+                    <% trips.forEach(trip=> { %>
+                        <div class="col-md-6 mb-1">
+                            <div class="card mb-2">
+                                <div class="card-body" id="card-body">
+                                    <h2 class="card-title">Location: <%= trip.location %>
+                                    </h2>
+                                    <a href="/trip/<%= trip.id %>" class="btn btn-primary">View/Edit Trip</a>
+                                    <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete
+                                        Trip</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <% }); %>
-        <% } else { %>
-            <p>No trips found for this user.</p>
-        <% } %>
-    </div>
-    
-<script src='/js/trip.js'></script>
-</main>
+                        <% }); %>
+                            <% } else { %>
+                                <p>No trips found for this user.</p>
+                                <% } %>
+            </div>
 
-<%- include('partials/footer') %>
+            <script src='/js/trip.js'></script>
+        </main>
+
+        <%- include('partials/footer') %>
