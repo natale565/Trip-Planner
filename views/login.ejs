@@ -1,58 +1,54 @@
 <%- include('partials/head') %>
-<div class="container-fluid login-page">
-    <div class="row">
-        <!-- Left Section (Login Form) -->
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <div class="login-container text-center">
-                <div class="logo">
-                  <i class="bi bi-globe-americas" style="font-size: 64px;"></i>
-                  </svg>
+<body>
+    <div class="container-fluid login-page">
+        <div class="row">
+            <!-- Left Section (Login Form) -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div class="login-container text-center">
+                    <div class="logo">
+                        <i class="bi bi-globe-americas" style="font-size: 64px;"></i>
+                    </div>
+                    <h3>TripCraft - Your All In One Travel Planner</h3>
+                    <p>Please login to your account</p>
+                    <form class="login-form">
+                        <input type="text" class="form-control" id="email-login" placeholder="Email">
+                        <input type="password" class="form-control" placeholder="Password" id="password-login">
+                        <button type="submit" class="btn login-button">Log In</button>
+                    </form>
+                    <div class="forgot-password mt-3">Forgot password?</div>
+                    <hr class="my-4">
+                    <p>Create an account</p>
+                    <form class="signup-form">
+                        <input type="text" class="form-control" id="username-signup" placeholder="Username">
+                        <input type="password" class="form-control" id="password-signup" placeholder="Password">
+                        <input type="email" class="form-control" id="email-signup" placeholder="Email">
+                        <button type="submit" class="btn create-account-button">Create Account</button>
+                    </form>
+                    <p class="mt-4">Issues with your account? <a href="mailto:support@trip-planner.com">Email us</a>.</p>
                 </div>
-                <h3>TripCraft - Your All In One Travel Planner</h3>
-                <p>Please login to your account</p>
-                <form class="login-form">
-                    <input type="text" class="form-control" id="email-login" placeholder="Email">
-                    <input type="password" class="form-control" placeholder="Password" id="password-login" >
-                    <button type="submit" class="btn login-button w-100">Log In</button>
-                </form>
-                <div class="forgot-password mt-3">Forgot password?</div>
-                <hr class="my-4">
-                <p>Create an account</p>
-                <form class="signup-form">
-                    <input type="text" class="form-control" id="username-signup" placeholder="Username">
-                    <input type="password" class="form-control" id="password-signup" placeholder="Password">
-                    <input type="email" class="form-control" id="email-signup" placeholder="Email">
-                    <button type="submit" class="btn create-account-button w-100">Create Account</button>
-                </form>
-                <p class="mt-4">Issues with your account? <a href="mailto:support@trip-planner.com">Email us</a>.</p>
             </div>
-        </div>
 
-        <!-- Right Section (Information) -->
-        <div class="col-md-6 right-section d-flex align-items-center">
-            <div>
-              <h1>Our Mission To You:</h1>
-                <h4>"Our mission is to simplify travel planning by offering an intuitive platform where you can seamlessly organize every detail of your trips, from flights and lodging to itineraries and companions, allowing you to focus on the journey ahead while cherishing memories of past adventures."</h4>
-                <br>
-                <br>
-                <p>Our trip planner website is designed to be your all-in-one travel companion, helping you create, manage, and enjoy your trips effortlessly. Whether you're jetting off on a quick getaway or embarking on a lengthy vacation, our platform allows you to:</p>
-                <ul>
-                  <li><b>Add flight information:</b> Keep track of all your travel details in one place.</li>
-                  <li><b>Organize lodging:</b> Manage your stay details with ease.</li>
-                  <li><b>Build an itinerary:</b> Plan out each day of your trip with activities, landmarks, and dining options.</li>
-                  <li><b>Build an itinerary:</b> Plan out each day of your trip with activities, landmarks, and dining options.</li>
-                  <li><b>Review past trips:</b> Relive your previous adventures and keep track of important travel memories.</li>
-                  <li><b>Edit existing trips:</b> Flexibly update your plans as they evolve to ensure everything stays organized.</li>
-                  <br>
-                  <br>
-                  <p>Our aim is to make trip planning easy, stress-free, and collaborative, so you can focus on what really matters—making unforgettable travel experiences and memories that will last a lifetime.</p>
-                </ul>
-                
+            <!-- Right Section (Information) -->
+            <div class="col-md-6 right-section d-flex align-items-center">
+                <div>
+                    <h1>Our Mission To You:</h1>
+                    <h4>"Our mission is to simplify travel planning by offering an intuitive platform where you can seamlessly organize every detail of your trips, from flights and lodging to itineraries and companions, allowing you to focus on the journey ahead while cherishing memories of past adventures."</h4>
+                    <br>
+                    <p>Our trip planner website is designed to be your all-in-one travel companion, helping you create, manage, and enjoy your trips effortlessly. Whether you're jetting off on a quick getaway or embarking on a lengthy vacation, our platform allows you to:</p>
+                    <ul>
+                        <li><b>Add flight information:</b> Keep track of all your travel details in one place.</li>
+                        <li><b>Organize lodging:</b> Manage your stay details with ease.</li>
+                        <li><b>Build an itinerary:</b> Plan out each day of your trip with activities, landmarks, and dining options.</li>
+                        <li><b>Review past trips:</b> Relive your previous adventures and keep track of important travel memories.</li>
+                        <li><b>Edit existing trips:</b> Flexibly update your plans as they evolve to ensure everything stays organized.</li>
+                    </ul>
+                    <br>
+                    <p>Our aim is to make trip planning easy, stress-free, and collaborative, so you can focus on what really matters—making unforgettable travel experiences and memories that will last a lifetime.</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="/js/signup.js"></script>
-<script src="/js/login.js"></script>
+    <script src="/js/signup.js"></script>
+    <script src="/js/login.js"></script>
 </body>
-</html>       
+</html>

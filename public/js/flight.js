@@ -53,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveFlightBtn = document.querySelector('#save-flight-btn');
     if (saveFlightBtn) {
         saveFlightBtn.addEventListener('click', newFlightHandler);
-    } else {
-        console.error('Save flight button not found');
     }
 });
 
@@ -109,21 +107,15 @@ const editFlightHandler = async (event) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    const saveFlightBtn = document.querySelector('#save-flight-btn');
-    if (saveFlightBtn) {
-        saveFlightBtn.addEventListener('click', newFlightHandler);
-    }
-
     const saveEditedFlightBtn = document.querySelector('#save-edited-flight');
     if (saveEditedFlightBtn) {
         saveEditedFlightBtn.addEventListener('click', () => {
             document.querySelector('#edit-flight-form').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
         });
     }
-});
+    document.querySelector('#edit-flight-form').addEventListener('submit', editFlightHandler);
 
-document.querySelector('#edit-flight-form').addEventListener('submit', editFlightHandler);
-    
+});    
 
 const delFlightHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {

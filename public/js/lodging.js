@@ -49,8 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const saveLodgingBtn = document.querySelector('#save-lodging-btn');
         if (saveLodgingBtn) {
             saveLodgingBtn.addEventListener('click', newLodgingHandler);
-        } else {
-            console.error('Save lodging button not found')
         }
 });
 
