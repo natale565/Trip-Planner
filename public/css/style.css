@@ -87,7 +87,7 @@ body {
 
 /* dashboard page  */
 .row {
-    background-color: ;
+    background-color: white;
     display: grid;
     place-items: center;
 }
@@ -316,6 +316,9 @@ body.background-gif {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+      position: absolute;
+  margin-top: 0;
+  bottom: 0;
 }
 
 .left-text {
