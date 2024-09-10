@@ -1,17 +1,17 @@
 <%- include('head')%> <%- include('navbar') %>
-<body>
-  <h1>Start A New Trip!</h1>
-<form id="new-trip-form">
+
+  <h1 class ="trip-heading">Start A New Trip!</h1>
+<form id="new-trip-form" class ="trip-form">
 
     <label for="dest">Enter destination:</label><br>
 
 <input type="text" id="enter-trip-dest" name="enter-trip-dest" placeholder="Enter Destination Here.."><br>
-<button type="submit" class="btn btn-primary" id="start-planning-btn">Start Planning</button>
+<button type="submit" class="btn btn-primary start-plan-btn" id="start-planning-btn">Start Planning!</button>
 </form>
 
  
 
 <script src="/js/newTrip.js"></script>
-</body>
+
 
 <%-include('footer')%>
