@@ -9,7 +9,7 @@
             <h2 class="mb-1" id="trips">Your Trips</h2>
             <p id="trips">View, Edit, or Delete your trips</p>
 
-            <div class="row">
+            <div class="row dashboard-cards">
                 <% if (trips.length> 0) { %>
                     <% trips.forEach(trip=> { %>
                         <div class="col-md-6 mb-1">
@@ -17,7 +17,7 @@
                                 <div class="card-body" id="card-body">
                                     <h2 class="card-title">Location: <%= trip.location %>
                                     </h2>
-                                    <a href="/trip/<%= trip.id %>" class="btn btn-primary">View/Edit Trip</a>
+                                    <a href="/trip/<%= trip.id %>" class="btn btn-primary edit-btn">View/Edit Trip</a>
                                     <button class="btn btn-danger delete-trip-btn" data-id="<%= trip.id %>">Delete
                                         Trip</button>
                                 </div>
