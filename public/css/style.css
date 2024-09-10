@@ -28,7 +28,7 @@ justify-content: right;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Quicksand;
 }
 .login-page {
     display: flex;
@@ -175,10 +175,18 @@ h5{
   'opsz' 24
 }
 
+body.background-gif {
+  background-image: url('/images/giphy.gif'); /* Path to your GIF */
+  background-size: cover;    /* Cover the entire viewport */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+}
+
 .trip-heading {
   margin-bottom: 20px;       /* Add some space between the heading and form */
   font-size: 2em;            /* Adjust font size */
   text-align: center;        /* Center the heading */
+  color: white;
 }
 
 
@@ -197,6 +205,8 @@ h5{
    width: 300px;              /* Set a fixed width for the form */
   margin: 20px auto;         /* Center the form horizontally with auto margins */
 }
+
+
 
 .start-plan-btn
 {
