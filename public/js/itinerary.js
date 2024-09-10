@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveItineraryBtn = document.querySelector('#save-itinerary-btn');
     if (saveItineraryBtn) {
         saveItineraryBtn.addEventListener('click', newItineraryHandler);
-    } else {
-        console.error('Save itinerary button not found')
     }
 });
 
