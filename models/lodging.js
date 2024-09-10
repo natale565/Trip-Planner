@@ -24,7 +24,7 @@ Lodging.init(
             allowNull: false,
         },
         check_out: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allow: false
         },
         user_id: {

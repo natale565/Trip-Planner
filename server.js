@@ -6,7 +6,7 @@ const routes = require('./routes');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection');
 require('dotenv').config();
-
+const { formatDateTimeForDisplay } = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -30,6 +30,7 @@ app.use(session(sess));
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
+app.locals.formatDateTimeForDisplay = formatDateTimeForDisplay;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

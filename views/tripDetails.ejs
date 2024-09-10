@@ -19,10 +19,10 @@
                         <div class="card-body">
                             <h5>Flight for <%= trip.user.username %></h5>
                             <ul>
-                                <li>Airline: <%= flight.airline %></li>
-                                <li>Flight #: <%= flight.flight_number %></li>
-                                <li>From: <%= flight.from_airport %> at <%= flight.etd %></li>
-                                <li>To: <%= flight.to_airport %> at <%= flight.eta %></li>
+                                <li><strong>Airline:</strong> <%= flight.airline %></li>
+                                <li><strong>Flight #:</strong> <%= flight.flight_number %></li>
+                                <li><strong>From:</strong> <%= flight.from_airport %> at <%= formatDateTimeForDisplay(flight.etd) %></li>
+                                <li><strong>To:</strong> <%= flight.to_airport %> at <%= formatDateTimeForDisplay(flight.eta) %></li>
                             </ul>
                             <div class="d-flex justify-content-center">
                             <button class="btn btn-warning edit-flight-btn edit-btn" data-id="<%= flight.id %>">Edit</button>
@@ -49,10 +49,10 @@
                         <div class="card-body">
                             <h5>Lodging for <%= trip.user.username %></h5>
                             <ul>
-                                <li>Name: <%= lodging.lodging_name %></li>
-                                <li>Location: <%= lodging.lodging_location %></li>
-                                <li>Check In: <%= lodging.check_in %></li>
-                                <li>Check Out: <%= lodging.check_out %></li>
+                                <li><strong>Name:</strong> <%= lodging.lodging_name %></li>
+                                <li><strong>Location:</strong> <%= lodging.lodging_location %></li>
+                                <li><strong>Check In:</strong> <%= formatDateTimeForDisplay(lodging.check_in) %></li>
+                                <li><strong>Check Out:</strong> <%= formatDateTimeForDisplay(lodging.check_out) %></li>
                             </ul>
                             <div class="d-flex justify-content-center">
                             <button class="btn btn-warning edit-lodging-btn edit-btn" data-id="<%= lodging.id %>">Edit</button>
@@ -79,10 +79,10 @@
                         <div class="card-body">
                             <h5>Event by <%= trip.user.username %></h5>
                             <ul>
-                                <li>Description: <%= itinerary.description %></li>
-                                <li>Location: <%= itinerary.itinerary_location %></li>
-                                <li>Time: <%= itinerary.itinerary_time %></li>
-                                <li>Notes: <%= itinerary.notes %></li>
+                                <li><strong>Description:</strong> <%= itinerary.description %></li>
+                                <li><strong>Location:</strong> <%= itinerary.itinerary_location %></li>
+                                <li><strong>Time:</strong> <%= formatDateTimeForDisplay(itinerary.itinerary_time) %></li>
+                                <li><strong>Notes:</strong> <%= itinerary.notes %></li>
                             </ul>
                             <div class="d-flex justify-content-center">
                             <button class="btn btn-warning edit-itinerary-btn edit-btn" data-id="<%= itinerary.id %>">Edit</button>
