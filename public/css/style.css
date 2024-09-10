@@ -300,30 +300,47 @@ h5{
 /*Footer css*/
 .footer {
     background: linear-gradient(to right, #71d1ca, #b0e57c);
-    padding: 15px 30px;  
-    position: relative;  
+    color: #333;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    bottom: 0; 
-    z-index: 10;
-    
+}
+
+.left-text {
+    margin-right: auto;
+}
+
+.globe-icon {
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.social-icons {
+    margin-left: auto; 
+}
+
+.footer .social-icons a {
+    margin-left: 10px; 
 }
 
 .footer a {
     color: #333;
     text-decoration: none;
-}
-.footer a:hover {
-    color: #007bff;
-}
-.social-icons a {
-    margin: 0 10px;
-    font-size: 20px;
+    padding: 5px;
 }
 
+.footer a:hover {
+    color: white;
+}
+
+
+/* media */
 @media (max-width: 992px) {
     .trip-details-container .col-md-4 {
         flex: 1 1 45%; 
-    }
+    } 
 
     .add-btn-container {
         margin-bottom: 150px;
@@ -345,6 +362,22 @@ h5{
     .add-btn-container {
         margin-bottom: 150px;
         margin-top: -15px;
+    }
+    footer {
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        flex: none; 
+        width: 100%; 
+        text-align: center; 
+        margin: 10px 0;
+    }
+
+    .footer-right a {
+        margin-left: 0;
+        margin-right: 10px;
     }
 }
 
