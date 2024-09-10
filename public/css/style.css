@@ -175,12 +175,50 @@ h5{
   'opsz' 24
 }
 
-.edit-btn
+.trip-heading {
+  margin-bottom: 20px;       /* Add some space between the heading and form */
+  font-size: 2em;            /* Adjust font size */
+  text-align: center;        /* Center the heading */
+}
+
+
+
+.trip-form{
+      display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center */
+  
+  flex-direction: column;  /* Stack elements vertically */
+
+   background-color: #f0f0f0; /* Light background color */
+  border: 2px solid #b0e57c; /* Solid border with a specific color */
+  border-radius: 15px;       /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+   width: 300px;              /* Set a fixed width for the form */
+  margin: 20px auto;         /* Center the form horizontally with auto margins */
+}
+
+.start-plan-btn
 {
     background: linear-gradient(to right, #71d1ca, #b0e57c);
     border: solid 2px white;
     color: white;
-    padding: 10px;
+    padding: 5px;
+}
+
+.start-plan-btn:hover {
+    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    transform: scale(1.05);
+    color: white;
+    border: none;
+}
+
+.start-plan-btn
+{
+    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    border: solid 2px white;
+    color: white;
+    padding: 5px;
 }
 
 .edit-btn:hover {
