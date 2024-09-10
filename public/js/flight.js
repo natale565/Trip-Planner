@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveEditedFlightBtn = document.querySelector('#save-edited-flight');
     if (saveEditedFlightBtn) {
         saveEditedFlightBtn.addEventListener('click', () => {
-            document.querySelector('#edit-flight-form').submit();
+            document.querySelector('#edit-flight-form').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
         });
     }
 });

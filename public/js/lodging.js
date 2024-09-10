@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveEditedLodgingBtn = document.querySelector('#save-edited-lodging');
     if (saveEditedLodgingBtn) {
         saveEditedLodgingBtn.addEventListener('click', () => {
-            document.querySelector('#edit-lodging-form').submit();
+            document.querySelector('#edit-lodging-form').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
         });
     }
     
