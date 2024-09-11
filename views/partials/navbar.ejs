@@ -1,32 +1,14 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">TripCraft</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto"> 
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/dashboard">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/trip">Create Trip</a>
-      </li>
-      <li class="nav-item">
-        <button class="no-button nav-link" id="logout">Logout</button> 
-      </li>
-    </ul>
+
+  <div class="d-flex justify-content-center flex-grow-1">
+    <i class="bi bi-globe-americas" style="font-size: 32px;"></i>
   </div>
+
+  <div class="d-flex ml-auto">
+    <a class="nav-link mx-3" href="/dashboard">My Dashboard</a>
+    <button class="no-button nav-link mx-3" id="logout">Logout</button>
+  </div>
+
   <script src="/js/logout.js"></script>
 </nav>
