@@ -27,7 +27,13 @@ justify-content: right;
 
 .nav-link{
     color: black;
+    text-decoration: none;
 }
+
+.nav-link:hover {
+    color: white;
+}
+
 
 .navbar a {
     color: black;
