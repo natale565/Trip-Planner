@@ -11,6 +11,13 @@
   - Add guests that will be participating in plans made
 
 - Users are also able to edit future events if there are any changes in plans
+- This Website was created using:
+  - EJS
+  - JavaScript
+  - Express
+  - SQL
+  - PG
+  - Bcrypt
 
 
 # Installation
@@ -31,4 +38,29 @@
 
 - Once trip is created, the user will be able to enter in flight information, lodging, itinerary infomation, and additional guests on the trip.
 
+
+<br>
+<br>
+
+# [Click Here To View Live Website](https://trip-planner-b5zi.onrender.com)
+
+
 # ScreenShots
+
+![Screenshot 1](/public/images/Screenshot%202024-09-10%20at%208.24.49 PM.png)
+![Screenshot 2](/public/images/Screenshot%202024-09-10%20at%208.25.09 PM.png)
+![Screenshot 3](/public/images/Screenshot%202024-09-10%20at%208.25.18 PM.png)
+![Screenshot 4](/public/images/Screenshot%202024-09-10%20at%208.25.41 PM.png)
+![Screenshot 5](/public/images/Screenshot%202024-09-10%20at%208.26.28 PM.png)
+![Screenshot 6](/public/images/Screenshot%202024-09-10%20at%208.27.41 PM.png)
+![Screenshot 7](/public/images/Screenshot%202024-09-10%20at%208.27.52 PM.png)
+
+# Contact
+
+For questions regarding this application, please contact one of the team members below on GitHub:
+<br>
+<br>
+- Chris: https://github.com/natale565
+- Scott: https://github.com/scottreynolds6294
+- Josh: https://github.com/JMRobertson89
+- Seth: https://github.com/Sethav123
