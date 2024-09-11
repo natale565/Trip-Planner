@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 });
 
+
 const editLodgingHandler = async (event) => {
     event.preventDefault();
 
