@@ -106,7 +106,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "node --watch server.js"
+    "watch": "node --watch server.js",
+    "seed": "node seeds/user-seeds.js && node seeds/trip-seeds.js && node seeds/flight-seeds.js && node seeds/lodging-seeds.js && node seeds/itinerary-seeds.js"
   },
   "keywords": [],
   "author": "",
