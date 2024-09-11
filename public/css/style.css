@@ -17,7 +17,7 @@ main {
 
 /*Nav Bar css*/
 .navbar{
-background: linear-gradient(to right, #71d1ca, #b0e57c);
+background: linear-gradient(to right, #0097b2, #7ed957);
 padding: 15px 30px;  
 }
 
@@ -26,7 +26,11 @@ justify-content: right;
 }
 
 .nav-link{
-    color: white;
+    color: black;
+}
+
+.navbar a {
+    color: black;
 }
 
 .login-page {
@@ -34,7 +38,7 @@ justify-content: right;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: black;
 
 }
 
@@ -57,7 +61,7 @@ justify-content: right;
 }
 
 .right-section {
-    background: linear-gradient(to bottom right, #c9e7e5, #91c786);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     padding: 30px;
     color: black;
     display: flex;
@@ -72,9 +76,9 @@ justify-content: right;
     margin-bottom: 15px;
 }
 .login-button, .create-account-button {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     border: none;
-    color: white;
+    color: black;
     padding: 10px;
 }
 .forgot-password {
@@ -126,7 +130,7 @@ justify-content: right;
 
 
 #card-body {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
 }
 
 #trips {
@@ -135,13 +139,14 @@ justify-content: right;
 }
 
 .card-title {
-    color: white;
+    color: black;
 }
 
 /* Custom start trip button */
 .start-trip-btn {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     text-transform: uppercase;
+    color: black;
     padding: 10px 24px;
     border-radius: 20px; 
     font-size: 16px; 
@@ -150,14 +155,14 @@ justify-content: right;
 
 /* hover effect */
 .start-trip-btn:hover {
-    color: #000;
+    color: white;
     border-color: #000; 
 }
 
 /* tripDetails page css */
 .card-body{
     background: white;
-    border: #b0e57c solid 2px;
+    border: #7ed957 solid 2px;
     border-radius: 8px;
 }
 
@@ -168,7 +173,7 @@ justify-content: right;
 
 #trip-location-header{
     text-align: center;
-    border-bottom: #71d1ca 3px solid;
+    border-bottom: #0097b2 3px solid;
     padding-bottom: 10px;
 
 }
@@ -210,7 +215,7 @@ li {
 h3{
         text-align: center;
         position: relative;
-        background: linear-gradient(to right, #71d1ca, #b0e57c);
+        background: linear-gradient(to right, #0097b2, #7ed957);
         width: 75%;
         border-radius: 8px;
         padding-top: 5px;
@@ -234,7 +239,16 @@ h5{
 #openModal2,
 #openModal3 {
     width: 150px;
+    color: black;
 }
+
+#openModal1:hover,
+#openModal2:hover,
+#openModal3:hover {
+    width: 150px;
+    color: white;
+}
+
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -256,7 +270,7 @@ body.background-gif {
   margin-top: 20px;    /* Add some space between the heading and form */
   font-size: 2em;            /* Adjust font size */
   text-align: center;        /* Center the heading */
-  color: white;
+  color: black;
 }
 
 
@@ -269,7 +283,7 @@ body.background-gif {
   flex-direction: column;  /* Stack elements vertically */
 
    background-color: #f0f0f0; /* Light background color */
-  border: 2px solid #b0e57c; /* Solid border with a specific color */
+  border: 2px solid #7ed957; /* Solid border with a specific color */
   border-radius: 15px;       /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
    width: 400px;              /* Set a fixed width for the form */
@@ -281,14 +295,14 @@ body.background-gif {
 
 .start-plan-btn, .edit-btn
 {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
-    border: solid 2px white;
-    color: white;
+    background: linear-gradient(to right, #0097b2, #7ed957);
+    border: solid 1px black;
+    color: black;
     padding: 5px;
 }
 
 .start-plan-btn:hover{
-    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    background: linear-gradient(to right, #0097b2, #7ed957);
     transform: scale(1.05);
     color: white;
     border: none;
@@ -296,14 +310,14 @@ body.background-gif {
 
 .start-plan-btn
 {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     border: solid 2px white;
-    color: white;
+    color: black;
     padding: 5px;
 }
 
 .edit-btn:hover {
-    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    background: linear-gradient(to right, #0097b2, #7ed957); 
     transform: scale(1.05);
     color: white;
     border: none;
@@ -319,21 +333,21 @@ body.background-gif {
 }
 
 #save-flight-btn, #save-lodging-btn, #save-itinerary-btn, #save-edited-flight, #save-edited-lodging, #save-edited-itinerary{
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     color: white;
     padding: 10px;
     border: white 2px solid;
 }
 
 #save-flight-btn:hover, #save-lodging-btn:hover, #save-itinerary-btn:hover, #save-edited-flight:hover, #save-edited-lodging:hover, #save-edited-itinerary:hover {
-    background: linear-gradient(to right, #5bb6a3, #9cc562); 
+    background: linear-gradient(to right, #0097b2, #7ed957); 
     transform: scale(1.05);
     color: white;
     border: white 2px solid;
 }
 
 .modal-body, .modal-header, .modal-footer {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     color: white;
     padding: 10px;
 }
@@ -341,7 +355,7 @@ body.background-gif {
 
 /*Footer css*/
 .footer {
-    background: linear-gradient(to right, #71d1ca, #b0e57c);
+    background: linear-gradient(to right, #0097b2, #7ed957);
     color: #333;
     padding: 15px 30px;
     display: flex;
