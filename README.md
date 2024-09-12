@@ -36,7 +36,7 @@
 
 - To start a new trip, the user can click the "start a new trip button" which will open a modal to enter in the location of the trip along with dates and times.
 
-- Once trip is created, the user will be able to enter in flight information, lodging, itinerary infomation, and additional guests on the trip.
+- Once trip is created, the user will be able to enter in flight information, lodging, itinerary information, and additional guests on the trip.
 
 
 <br>
