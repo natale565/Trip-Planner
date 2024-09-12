@@ -12,6 +12,8 @@ body {
 
 main {
     flex: 1;  
+    display: flex;
+    flex-direction: column;
 }
 /*-------------------------------------------------------------------------------------*/
 /*Nav Bar css*/
@@ -254,13 +256,14 @@ li {
 .trip-details-container{
     padding-top: 20px;
     padding-bottom: 50px;
+    flex: 1;
 }
 
 .trip-details-container .row {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: stretch;
+    align-items: flex-start;
 }
 
 .trip-details-container .card {
@@ -371,6 +374,7 @@ li {
     align-items: center;
     width: 100%;
     margin-top: auto;
+    position: relative;
     bottom: 0;
 }
 
