@@ -15,6 +15,10 @@ main {
     flex: 1;  
 }
 
+.navbar-brand{
+    padding-right: 25px;
+}
+
 /*Nav Bar css*/
 .navbar{
 background: linear-gradient(to right, #0097b2, #7ed957);
