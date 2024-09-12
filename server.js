@@ -44,6 +44,6 @@ app.use('/lodging', require('./routes/api/lodgingRoutes'));
 app.use('/itinerary', require('./routes/api/itineraryRoutes'));
 
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
