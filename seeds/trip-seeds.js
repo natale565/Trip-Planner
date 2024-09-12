@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const Trip = require('../models/Trip');
+const Trip = require('../models/trip');
 
 const tripData = [
   {
