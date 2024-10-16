@@ -2,7 +2,7 @@
 
 # Description
 
-- TripCraft is a full fuctioning trip planning website where users can create an account, create upcoming trips to keep themselves and other travelers orginized and up to date with travel plans. Users can also view past trips and delete trips if necessary. 
+- TripCraft is a full functioning trip planning website where users can create an account, create upcoming trips to keep themselves and other travelers organized and up to date with travel plans. Users can also view past trips and delete trips if necessary. 
 
 - Users are able to enter trip information including:  
   - Flight information
